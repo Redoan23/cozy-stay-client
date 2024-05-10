@@ -15,7 +15,7 @@ const Home = () => {
             {/* featured rooms section */}
             <div className=' mt-24'>
                 <div>
-                    <h3 className=' text-center text-3xl font-semibold pb-10'>Rooms</h3>
+                    <h3 className=' text-center text-3xl font-semibold pb-10 text-white'>Rooms</h3>
                     <div>
                         <FeaturedRooms></FeaturedRooms>
                     </div>

@@ -59,7 +59,7 @@ const FeaturedRooms = () => {
                 {
                     featuredRoom.map(rooms =>
                         <SwiperSlide>
-                            <div className="card w-96 rounded-none shadow-none bg-base-100">
+                            <div className="card w-96 rounded-none shadow-none bg-gray-200">
                                 <figure><img src={rooms.img} alt="Shoes" /></figure>
                                 <div className="card-body space-y-3 text-left py-10 px-6">
                                     <h2 className="card-title w-full text-2xl font-thin">{rooms.name}</h2>
