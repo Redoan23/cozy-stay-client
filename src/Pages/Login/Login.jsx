@@ -4,7 +4,7 @@ import { AuthContext } from '../AuthProvider/AuthProvider';
 
 const Login = () => {
 
-    const { loginUser } = useContext(AuthContext)
+    const { loginUser, googleSignIn } = useContext(AuthContext)
 
     const handleLogin = (e) => {
         e.preventDefault()
@@ -16,6 +16,9 @@ const Login = () => {
         loginUser(email, password)
             .then(res => console.log(res.user))
             .catch(err => console.error(err))
+    }
+    const handleGoogle = () => {
+        googleSignIn()
     }
     return (
         <div className=' '>
@@ -41,6 +44,10 @@ const Login = () => {
                             <span className="label-text text-white">Password</span>
                         </label>
                         <input type="password" placeholder="password" name='password' className="input input-bordered" required />
+                    </div>
+                    <div className=' flex items-center gap-3'>
+                        <h1 className=' text-white'>login with social : </h1>
+                        <Link onClick={handleGoogle}><span className="text-blue-600 font-semibold">G</span><span className=" text-red-600">o</span><span className=" text-yellow-400">o</span><span className=" text-blue-600">g</span><span className=" text-green-700">l</span><span className="text-red-600">e</span></Link>
                     </div>
                     <div className="">
                         <button className="bg-yellow-600 px-10 py-4 text-center btn-primary">Login</button>
