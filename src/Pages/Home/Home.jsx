@@ -1,6 +1,7 @@
 import React from 'react';
 import FeaturedRooms from './FeaturedRooms/FeaturedRooms';
 import Map from './Map/Map';
+import Newsletter from './Newsletter/Newsletter';
 
 const Home = () => {
     return (
@@ -18,9 +19,12 @@ const Home = () => {
                     <div>
                         <FeaturedRooms></FeaturedRooms>
                     </div>
-                    <div>
-                        <Map></Map>
-                    </div>
+                </div>
+                <div className=' mt-24'>
+                    <Map></Map>
+                </div>
+                <div className=' mt-32'>
+                    <Newsletter></Newsletter>
                 </div>
             </div>
         </div>
