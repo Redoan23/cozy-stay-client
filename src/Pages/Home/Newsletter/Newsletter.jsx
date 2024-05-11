@@ -1,5 +1,5 @@
 import React from 'react';
-import img from '../../../../public/cool-background.png'
+// import img from '../../../../public/cool-background.png'
 
 const Newsletter = () => {
     return (
@@ -12,7 +12,6 @@ const Newsletter = () => {
                         <h3 className=' text-center font-semibold text-5xl text-green-600  '> Newsletter</h3>
                         <input className=' w-[350px] relative rounded-xl bg-white h-10 mx-auto text-white px-3' type="email" placeholder='Your Email Here' name="email" id="email" />
                         <button className=' text-white bg-red-600 p-2 absolute lg:right-[38.5%] rounded-xl'>Subscribe</button>
-
                     </div>
                 </div>
             </div>
