@@ -6,12 +6,15 @@ import { Navigation } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import { AuthContext } from '../AuthProvider/AuthProvider';
+import Swal from 'sweetalert2'
+
 
 const RoomDetails = () => {
     const { user } = useContext(AuthContext)
     const { id } = useParams()
     const [roomData, setRoomData] = useState([])
     const [image, setImage] = useState([])
+    const [update, setUpdate] = useState(null)
 
     useEffect(() => {
         axios.get(`http://localhost:5000/rooms/${id}`)
@@ -21,7 +24,8 @@ const RoomDetails = () => {
                 setImage(res.data.img)
             })
             .catch(err => console.log(err))
-    }, [])
+    }, [update])
+
     const backgroundImage = roomData?.singleImg ? `url(${roomData.singleImg})` : 'none'
 
 
@@ -29,12 +33,68 @@ const RoomDetails = () => {
         e.preventDefault()
         const form = e.target
         const startDate = form.dateFrom.value
-        const endDate = form.dateTo.value
+        // const endDate = form.dateTo.value
         const email = form.email.value
         const name = form.name.value
-        console.log( startDate, endDate, email, name)
+        const availability = roomData?.availability
+        console.log(startDate, email, name, availability)
 
-        axios.put(`http://localhost:5000/rooms/${id}`)
+        if (availability === 'Not Available') {
+            return alert('this is already booked you can not book it anymore')
+        }
+
+        if (!startDate) {
+            return alert('start is empty')
+        }
+        // if (!endDate) {
+        //     return alert('end is empty')
+        // }
+
+        Swal.fire({
+
+            text: "You won't be able to revert this!",
+            icon: "info",
+            html: `
+            <div class='space-y-7'>
+              <div class=' flex gap-5 justify-center'>
+                <div><h1 >You are booking the for <span class=' text-red-600 font-semibold'>${startDate}</span></h1></div>
+                <div> <h3 > You will Pay : <span class=' text-red-600 font-semibold ' > ${roomData.ppn} </span> <span class=' text-green-600 font-semibold'> $</span></h3> </div>
+              </div>
+              <div>
+                 <h3 class=' text-xl font-semibold' >Please Read the description again!</h3>
+                 <p> ${roomData.description}</p>
+              </div>
+            </div>
+            `,
+            title: "Are you sure?",
+            width: 1000,
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Confirm Booking"
+        }).then((result) => {
+            if (result.isConfirmed) {
+
+                axios.put(`http://localhost:5000/rooms/${id}`, { availability })
+                    .then(res => {
+                        setUpdate(res.data.modifiedCount)
+                        console.log(res.data)
+
+                        if (res.data.modifiedCount > 0) {
+                            Swal.fire({
+                                title: "Booked!",
+                                text: " Congratulations! You have successfully booked the room.",
+                                icon: "success"
+                            });
+                        }
+
+                    })
+
+            }
+        });
+
+
+
     }
     return (
         <div>
@@ -88,16 +148,16 @@ const RoomDetails = () => {
                 <div>
                     <h3 className=' text-white font-semibold text-center pb-10 text-2xl'>Checkout</h3>
                 </div>
-                <form onSubmit={ handleCheckOut}>
+                <form onSubmit={handleCheckOut}>
                     <div className=' grid grid-cols-2 gap-6 p-5 text-white place-items-center'>
                         <div className=' w-full'>
-                            <label htmlFor="dateFrom">From :</label>
+                            <label htmlFor="dateFrom">Booking Date :</label>
                             <input className=' w-full p-1 text-black' type="date" name="dateFrom" id="dateFrom" placeholder='dateFrom' />
                         </div>
-                        <div className=' w-full'>
+                        {/* <div className=' w-full'>
                             <label htmlFor="dateTo">To :</label>
                             <input className=' w-full p-1 text-black' type="date" name="dateTo" id="dateTo" placeholder='dateTO' />
-                        </div>
+                        </div> */}
                         <div className=' w-full' >
                             <label htmlFor="name">Name :</label>
                             <input className=' w-full p-1 text-black' type="name" name="name" id="name" placeholder='Name' />
@@ -113,6 +173,7 @@ const RoomDetails = () => {
                     </div>
                 </form>
             </div>
+            <hr />
 
         </div>
     );
