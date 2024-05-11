@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
 import { IoMdArrowDropdown } from "react-icons/io";
 import axios from 'axios';
@@ -6,6 +6,7 @@ import axios from 'axios';
 const Rooms = () => {
     const loadedData = useLoaderData()
     console.log(loadedData)
+    const [data, setData] = useState(loadedData)
 
     const handleSort = (e) => {
         e.preventDefault()
@@ -14,8 +15,23 @@ const Rooms = () => {
         const to = form.to.value
         console.log(from, to)
 
+        if (!from) {
+            return alert('you should put at least a value to from')
+        }
+        if (!to) {
+            return alert("put a value in the to box")
+        }
+        if (from > to) {
+            return alert('dude from can not be bigger than to')
+        }
+
         axios.get(`http://localhost:5000/rooms/filter?from=${from}&to=${to}`)
-        .then(res=> console.log(res.data))
+            .then(res => {
+                console.log(res.data)
+                setData(res.data)
+            })
+
+        form.reset()
 
     }
 
@@ -41,7 +57,7 @@ const Rooms = () => {
                                         <input className=' border-none bg-white  p-2' type="number" name="from" id="from" placeholder='From' />
                                     </label>
                                     <label htmlFor="to">
-                                        <input className='border-none p-2' max={200} type="number" name="to" id="to" placeholder='To' />
+                                        <input className='border-none p-2' type="number" name="to" id="to" placeholder='To' />
                                     </label>
                                 </div>
                                 <div className=' text-center pt-3 w-full'>
@@ -70,7 +86,7 @@ const Rooms = () => {
                                 <th></th>
                             </tr>
                         </thead>
-                        {loadedData.map(room => <tbody>
+                        {data.map(room => <tbody key={ room._id}>
                             <tr>
                                 {/* <th>
                                             <label>

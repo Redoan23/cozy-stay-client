@@ -49,16 +49,14 @@ const FeaturedRooms = () => {
                 slidesPerView={3}
                 slidesPerGroup={2}
                 speed={400}
-                onSlideChange={() => console.log('slide change')}
-                onSwiper={(swiper) => console.log(swiper)}
                 navigation={true} modules={[Navigation]}
                 className='mySwiper mx-auto w-4/5'
                 loop={Infinity}
                 
             >
                 {
-                    featuredRoom.map(rooms =>
-                        <SwiperSlide>
+                    featuredRoom.map((rooms, idx) =>
+                        <SwiperSlide key={idx}>
                             <div className="card w-96 rounded-none shadow-none bg-gray-200">
                                 <figure><img src={rooms.img} alt="Shoes" /></figure>
                                 <div className="card-body space-y-3 text-left py-10 px-6">

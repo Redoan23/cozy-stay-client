@@ -19,7 +19,7 @@ const Navbar = () => {
     </>
 
     return (
-        <div className="navbar absolute top-10 text-yellow-400  z-20">
+        <div className="navbar absolute top-10 text-yellow-400  from-[#1515159b] to-[#99999900] z-20">
             <div className="navbar-start">
                 <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
