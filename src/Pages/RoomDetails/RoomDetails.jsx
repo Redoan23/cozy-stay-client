@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
 import 'swiper/css';
@@ -11,12 +11,14 @@ import { IoStar } from 'react-icons/io5';
 
 
 const RoomDetails = () => {
+    const navigate = useNavigate()
     const { user } = useContext(AuthContext)
     const { id } = useParams()
     const [roomData, setRoomData] = useState([])
     const [image, setImage] = useState([])
     const [update, setUpdate] = useState(null)
     const [reviews, setReviews] = useState([])
+
 
     useEffect(() => {
         axios.get(`http://localhost:5000/user/review/${id}`)
@@ -52,7 +54,12 @@ const RoomDetails = () => {
         const roomName = roomData?.room_type
         const roomId = roomData?._id
         const ppn = roomData?.ppn
-        const userBookingData = { startDate, email, name, imageInfo, roomName, ppn, roomId }
+        const mainIdOfTheRoom = id
+        const userBookingData = { startDate, email, name, imageInfo, roomName, ppn, roomId, mainIdOfTheRoom }
+
+        if (!user) {
+            return navigate('/login')
+        }
 
         if (availability === 'Not Available') {
             return alert('this is already booked you can not book it anymore')
@@ -113,7 +120,7 @@ const RoomDetails = () => {
             }
         });
 
-
+        form.reset()
 
     }
     return (
@@ -201,19 +208,21 @@ const RoomDetails = () => {
 
             <div className=' grid gap-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 place-items-center pb-10'>
                 {
-                    reviews.length > 0 ? reviews.map(review =>
+                    reviews.map(review =>
                         <div key={review._id} className="bg-white rounded-lg shadow-lg p-4 w-96 flex flex-col items-center justify-center space-y-2">
                             <div className="text-4xl font-bold flex items-center justify-center gap-1"><IoStar></IoStar>{review.rating}</div>
                             <div><h3 className=' font-semibold py-2'>{review?.userName}</h3></div>
                             <div> <p>{review.postingTime}</p> </div>
                             <div className="text-gray-500">{review.comment}</div>
                         </div>)
-
-                        :
-
-                        <div className=' text-center mx-auto'>
-                            <h3 className=' text-white text-center text-3xl py-5'>No Reviews Yet</h3>
-                        </div>
+                }
+            </div>
+            <div>
+                {
+                    reviews.length <= 0 &&
+                    <div className=' text-center mx-auto'>
+                        <h3 className=' text-white text-center text-3xl py-5'>No Reviews Yet</h3>
+                    </div>
                 }
             </div>
 

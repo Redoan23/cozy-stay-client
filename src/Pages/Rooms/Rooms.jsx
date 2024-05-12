@@ -1,12 +1,15 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
-import { IoMdArrowDropdown } from "react-icons/io";
 import axios from 'axios';
 
 const Rooms = () => {
     const loadedData = useLoaderData()
     console.log(loadedData)
     const [data, setData] = useState(loadedData)
+
+    useEffect(() => {
+        axios.get('')
+    }, [])
 
     const handleSort = (e) => {
         e.preventDefault()
@@ -86,28 +89,20 @@ const Rooms = () => {
                                 <th></th>
                             </tr>
                         </thead>
-                        {data.map(room => <tbody key={ room._id}>
+                        {data.map(room => <tbody key={room._id}>
                             <tr>
-                                {/* <th>
-                                            <label>
-                                                <input type="checkbox" className="checkbox" />
-                                            </label>
-                                        </th> */}
                                 <td>
                                     <div className="flex items-center gap-3">
                                         <div className="avatar">
-                                            <div className="mask mask-squire w-48 h-48">
+                                            <div className="mask mask-squire w-48 h-48 overflow-hidden">
                                                 <Link to={`/roomDetails/${room._id}`}>
-                                                    <img title='click to view details' className=' relative hover:text-center' src={room.singleImg} />
+                                                    <img title='click to view details' className=' relative hover:text-center hover:scale-[1.15] duration-300 ease-in-out ' src={room.singleImg} />
                                                 </Link>
-                                                {/* <div className=' w-full h-full hidden hover:block hover:bg-gradient-to-t from-[#1515159b] to-[#99999900] hover:z-20 '>
-                                                    <p className=' absolute top-[50%] left-7 text-white'>click to show details</p>
-                                                </div> */}
                                             </div>
                                         </div>
                                         <div>
-                                            <div className="font-bold text-2xl">{room.room_type}</div>
-                                            {/* <div className="text-sm opacity-50">United States</div> */}
+                                            <div className="font-bold text-2xl pb-3">{room.room_type}</div>
+                                            <div className="text-sm text-white hover:opacity-100 opacity-50">Click the image to see details</div>
                                         </div>
                                     </div>
                                 </td>
