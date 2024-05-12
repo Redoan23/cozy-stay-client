@@ -7,6 +7,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import { AuthContext } from '../AuthProvider/AuthProvider';
 import Swal from 'sweetalert2'
+import { IoStar } from 'react-icons/io5';
 
 
 const RoomDetails = () => {
@@ -15,6 +16,14 @@ const RoomDetails = () => {
     const [roomData, setRoomData] = useState([])
     const [image, setImage] = useState([])
     const [update, setUpdate] = useState(null)
+    const [reviews, setReviews] = useState([])
+
+    useEffect(() => {
+        axios.get(`http://localhost:5000/user/review/${id}`)
+            .then(res => {
+                setReviews(res.data)
+            })
+    }, [])
 
     useEffect(() => {
         axios.get(`http://localhost:5000/rooms/${id}`)
@@ -29,6 +38,8 @@ const RoomDetails = () => {
     const backgroundImage = roomData?.singleImg ? `url(${roomData.singleImg})` : 'none'
 
 
+
+
     const handleCheckOut = e => {
         e.preventDefault()
         const form = e.target
@@ -39,9 +50,9 @@ const RoomDetails = () => {
         const availability = roomData?.availability
         const imageInfo = roomData?.singleImg
         const roomName = roomData?.room_type
-        const roomId=roomData?._id
+        const roomId = roomData?._id
         const ppn = roomData?.ppn
-        const userBookingData = { startDate, email, name, imageInfo, roomName, ppn, roomId  }
+        const userBookingData = { startDate, email, name, imageInfo, roomName, ppn, roomId }
 
         if (availability === 'Not Available') {
             return alert('this is already booked you can not book it anymore')
@@ -153,7 +164,7 @@ const RoomDetails = () => {
                 </div>
             </div>
             <hr />
-            <div className=' pt-10'>
+            <div className=' py-10'>
                 <div>
                     <h3 className=' text-white font-semibold text-center pb-10 text-2xl'>Checkout</h3>
                 </div>
@@ -183,6 +194,28 @@ const RoomDetails = () => {
                 </form>
             </div>
             <hr />
+
+            <div>
+                <h3 className=' font-semibold text-white text-center text-5xl py-14'>User Reviews</h3>
+            </div>
+
+            <div className=' grid gap-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 place-items-center pb-10'>
+                {
+                    reviews.length > 0 ? reviews.map(review =>
+                        <div key={review._id} className="bg-white rounded-lg shadow-lg p-4 w-96 flex flex-col items-center justify-center space-y-2">
+                            <div className="text-4xl font-bold flex items-center justify-center gap-1"><IoStar></IoStar>{review.rating}</div>
+                            <div><h3 className=' font-semibold py-2'>{review?.userName}</h3></div>
+                            <div> <p>{review.postingTime}</p> </div>
+                            <div className="text-gray-500">{review.comment}</div>
+                        </div>)
+
+                        :
+
+                        <div className=' text-center mx-auto'>
+                            <h3 className=' text-white text-center text-3xl py-5'>No Reviews Yet</h3>
+                        </div>
+                }
+            </div>
 
         </div>
     );

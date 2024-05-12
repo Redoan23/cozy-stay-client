@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
 
@@ -122,7 +123,7 @@ const MyBookings = () => {
                                                 </div>
                                             </td>
                                             <td>
-                                                <button className="btn btn-ghost btn-xs bg-orange-500 text-white">Post A Review</button>
+                                                <Link to={`/reviews/${room.roomId}`}><button className="btn btn-ghost btn-xs bg-orange-500 text-white">Post A Review</button></Link>
                                             </td>
                                             <td>
                                                 {/* <button onClick={() => handleUpdateDate(room._id)} className="btn btn-ghost btn-xs bg-green-600 text-white">
