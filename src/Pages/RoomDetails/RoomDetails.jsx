@@ -37,7 +37,11 @@ const RoomDetails = () => {
         const email = form.email.value
         const name = form.name.value
         const availability = roomData?.availability
-        console.log(startDate, email, name, availability)
+        const imageInfo = roomData?.singleImg
+        const roomName = roomData?.room_type
+        const roomId=roomData?._id
+        const ppn = roomData?.ppn
+        const userBookingData = { startDate, email, name, imageInfo, roomName, ppn, roomId  }
 
         if (availability === 'Not Available') {
             return alert('this is already booked you can not book it anymore')
@@ -79,6 +83,11 @@ const RoomDetails = () => {
                     .then(res => {
                         setUpdate(res.data.modifiedCount)
                         console.log(res.data)
+
+                        // creating a post for the MY Booking page where user can see the details
+                        axios.post('http://localhost:5000/booked/user', userBookingData)
+                            .then(res => console.log(res.data))
+                            .catch(err => console.log(err))
 
                         if (res.data.modifiedCount > 0) {
                             Swal.fire({
