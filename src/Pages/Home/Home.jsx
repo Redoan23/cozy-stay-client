@@ -3,6 +3,7 @@ import FeaturedRooms from './FeaturedRooms/FeaturedRooms';
 import Map from './Map/Map';
 import Newsletter from './Newsletter/Newsletter';
 import Swal from 'sweetalert2';
+import UserReview from './UserReview/UserReview';
 ;
 
 const Home = () => {
@@ -17,40 +18,21 @@ const Home = () => {
 
     useEffect(() => {
         const timeOut = setTimeout(() => {
-            // Swal.fire({
-            //     title: "Special Offer!",
-            //     text: "Modal with a custom image.",
-            //     html:
-            //         `
-            //                     <div class="relative h-[400px] p-0">
-            //   <img src="https://i.ibb.co/znpsbQt/2150683419.jpg" alt="Special Offer" class="absolute inset-0 w-full h-full object-cover blur-md" style="filter: blur(1px);">
-            //   <div class="absolute inset-0 flex justify-center items-center text-center text-white text-shadow-lg bg-gradient-to-b from-[#1515159b] to-[#99999900]">
-            //     <div>
-            //       <h2 class="text-3xl font-bold mb-4">Our special offer is going on</h2>
-            //       <p class="text-xl">Stay 2 nights, pay for one</p>
-            //     </div>
-            //   </div>
-            // </div> `,
-            // imageUrl: "https://i.ibb.co/znpsbQt/2150683419.jpg",
-            // imageWidth: 600,
-            // imageHeight: 400,
-            // imageAlt: "Custom image"
-            // });
 
 
             Swal.fire({
                 imageWidth: 550,
                 imageHeight: 400,
-                width:500,
-                padding:0,
+                width: 500,
+                padding: 0,
                 html:
                     `
               <div class="relative h-[550px] overflow-auto p-0">
                         <img src="https://i.ibb.co/znpsbQt/2150683419.jpg" alt="Special Offer" class="absolute inset-0 w-full h-full object-cover blur-md" style="filter: blur(1px);">
                     <div class="absolute inset-0 flex justify-center items-center text-center text-white text-shadow-lg bg-gradient-to-b from-[#1515159b] to-[#99999900]">
                         <div>
-                           <h2 class="text-3xl font-bold mb-4">Our special offer is going on</h2>
-                           <p class="text-xl text-red-100">Stay 2 nights, pay for one</p>
+                           <h2 class="text-3xl font-bold mb-4 ">Our special offer is going on</h2>
+                           <p class="text-xl text-red-100 bg-red-500 p-2">Book 2 rooms, pay for one</p>
                        </div>
                     </div>
              </div> `,
@@ -58,11 +40,11 @@ const Home = () => {
                 showCancelButton: false,
                 showConfirmButton: true,
                 confirmButtonColor: "#bbbb",
-                confirmButtonText: "X", // Use an X sign instead of "OK" text
-                confirmButtonAriaLabel: "Close", // Accessibility label for screen readers
+                confirmButtonText: "X",
+                confirmButtonAriaLabel: "Close",
                 customClass: {
-                    confirmButton: 'absolute top-0 rounded-none right-0 p-0 m-0 bg-white border-none text-3xl text-black', // Customize button styling
-                    popup: ' padding-0 margin-0', // Remove padding from the modal
+                    confirmButton: 'absolute top-0 rounded-none right-0 p-0 m-0 bg-none border-none text-3xl text-black',
+                    popup: ' padding-0 margin-0', 
 
                 },
             });
@@ -80,23 +62,29 @@ const Home = () => {
 
     return (
         <div onClick={() => setAdd(false)}>
-            <div className=' relative bg-[url("https://i.ibb.co/znLY5s4/2150497283.jpg")] h-[800px] w-full bg-cover'>
+            <div className=' relative bg-[url("https://i.ibb.co/BsG7K2h/2150497283-1.jpg")] h-[800px] w-full bg-cover'>
                 <div className=' text-white z-10 absolute bg-gradient-to-b from-[#1515159b] to-[#99999900] w-full h-full flex items-center flex-col justify-center gap-5'>
-                    <h1 className=' text-5xl lg:text-8xl font-bold text-center'>COZY STAY</h1>
-                    <p className=' text-xs lg:text-lg text-yellow-100 text-center font-semibold'>welcome to cozy stay a luxurious hotel in Dhaka</p>
+                    <h1 className='merriweather-light text-5xl lg:text-8xl font-bold text-center'>COZY STAY</h1>
+                    <p className=' inter-font text-xs lg:text-lg text-yellow-100 text-center font-semibold'>welcome to cozy stay a luxurious hotel in Dhaka</p>
                 </div>
             </div>
 
             {/* featured rooms section */}
             <div className=' mt-24'>
                 <div>
-                    <h3 className=' text-center text-3xl font-semibold pb-10 text-white'>Rooms</h3>
+                    <h3 className=' merriweather-light text-center text-3xl font-semibold pb-10 text-white'>Rooms</h3>
                     <div>
                         <FeaturedRooms></FeaturedRooms>
                     </div>
                 </div>
                 <div className=' mt-24'>
                     <Map></Map>
+                </div>
+                <div className=' mt-16'>
+                    <div>
+                        <h3 className=' merriweather-light font-semibold text-5xl text-center text-white '>User Reviews</h3>
+                        <UserReview></UserReview>
+                    </div>
                 </div>
                 <div className=' mt-32'>
                     <Newsletter></Newsletter>

@@ -7,6 +7,7 @@ const Rooms = () => {
     const loadedData = useLoaderData()
     console.log(loadedData)
     const [data, setData] = useState(loadedData)
+    const [reviewData, setReviewData] = useState([])
 
     // swal notification
     const Toast = Swal.mixin({
@@ -23,7 +24,10 @@ const Rooms = () => {
 
 
     useEffect(() => {
-        axios.get('')
+        axios.get('http://localhost:5000/user/review')
+            .then(res => {
+                setReviewData(res.data)
+            })
     }, [])
 
     const handleSort = (e) => {
@@ -66,11 +70,11 @@ const Rooms = () => {
         <div>
             <div className=' bg-[url("https://i.ibb.co/stY0ZtZ/2150897745.jpg")] h-[600px] w-full bg-center  '  >
                 <div className=' w-full h-full bg-gradient-to-b from-[#1515156d] to-[#99999900] flex justify-center items-center flex-col space-y-4'>
-                    <h3 className=' text-5xl font-semibold text-center text-white'>Welcome to Our Rooms</h3>
-                    <p className='text-white pb-10'>please select the rooms feel suitable in</p>
+                    <h3 className=' text-5xl font-semibold text-center sm:pt-10 text-white merriweather-light'>Welcome to Our Rooms</h3>
+                    <p className='text-white pb-10 inter-font'>please select the rooms feel suitable in</p>
                     <div>
                         <div>
-                            <h3 className=' text-white text-2xl text-center pb-6'>Filter By Price Range</h3>
+                            <h3 className=' text-white text-2xl text-center pb-6 merriweather-light'>Filter By Price Range</h3>
                             <form onSubmit={handleSort}>
                                 <div className=' flex md:flex-row flex-col items-center gap-5'>
                                     <label htmlFor="from">
@@ -97,7 +101,7 @@ const Rooms = () => {
                             <tr>
                                 <th>Type</th>
                                 <th>Price Per Night</th>
-                                <th>Reviews</th>
+                                <th>Total Reviews</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -113,15 +117,18 @@ const Rooms = () => {
                                             </div>
                                         </div>
                                         <div>
-                                            <div className="font-bold text-2xl pb-3">{room.room_type}</div>
+                                            <div className="font-bold text-2xl pb-3 merriweather-light">{room.room_type}</div>
                                             <div className="text-sm text-white hover:opacity-100 opacity-50">Click the image to see details</div>
                                         </div>
                                     </div>
                                 </td>
-                                <td>
-                                    <span className="badge badge-ghost badge-lg">{room.ppn} $</span>
+                                <td className=' pl-12'>
+                                    <span className=" badge badge-ghost badge-lg">{room.ppn} $</span>
                                 </td>
-                                <td>Purple</td>
+                                <td className='pl-16' >{
+                                    reviewData.filter(data => data.reviewId === room._id).length
+                                }
+                                </td>
                                 <th>
                                     <button onClick={() => {
                                         return Toast.fire({

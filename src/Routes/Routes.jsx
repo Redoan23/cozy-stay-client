@@ -9,12 +9,14 @@ import PrivateRoutes from "./PrivateRoutes/PrivateRoutes";
 import RoomDetails from "../Pages/RoomDetails/RoomDetails";
 import Review from "../Pages/MyBookings/Review/Review";
 import Error from "../Pages/Error/Error";
+import AboutUs from "../Pages/AboutUs/AboutUs";
+import ContactUs from "../Pages/ContactUs/ContactUs";
 
 const router = createBrowserRouter([
     {
         path: "/",
         element: <Root></Root>,
-        errorElement:<Error></Error>,
+        errorElement: <Error></Error>,
         children: [
             {
                 path: '/',
@@ -23,7 +25,7 @@ const router = createBrowserRouter([
             {
                 path: '/rooms',
                 element: <Rooms></Rooms>,
-                loader:()=>fetch('http://localhost:5000/rooms')
+                loader: () => fetch('http://localhost:5000/rooms')
             },
             {
                 path: '/myBookings',
@@ -38,12 +40,20 @@ const router = createBrowserRouter([
                 element: <Register></Register>
             },
             {
-                path:'/roomDetails/:id',
-                element:<RoomDetails></RoomDetails>
+                path: '/roomDetails/:id',
+                element: <RoomDetails></RoomDetails>
             },
             {
-                path:'/reviews/:id',
-                element:<PrivateRoutes><Review></Review></PrivateRoutes>
+                path: '/reviews/:id',
+                element: <PrivateRoutes><Review></Review></PrivateRoutes>
+            },
+            {
+                path: '/aboutUs',
+                element: <AboutUs></AboutUs>
+            },
+            {
+                path: '/contactUs',
+                element: <ContactUs></ContactUs>
             }
         ]
     },

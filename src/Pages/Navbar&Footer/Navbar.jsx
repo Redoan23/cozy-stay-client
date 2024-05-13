@@ -35,13 +35,13 @@ const Navbar = () => {
     const items = <>
         <li><NavLink to={'/'}>Home</NavLink></li>
         <li><NavLink to={'/rooms'}>Rooms</NavLink></li>
-        <li><NavLink to={'/myBookings'}>MY Bookings</NavLink></li>
+        <li><NavLink to={'/myBookings'}>My Bookings</NavLink></li>
         <li><NavLink to={'/aboutUs'}>About Us</NavLink></li>
         <li><NavLink to={'/contactUs'}>Contact Us</NavLink></li>
     </>
 
     return (
-        <div className="navbar absolute top-10 text-yellow-400  from-[#1515159b] to-[#99999900] z-20">
+        <div className="navbar absolute top-10 text-yellow-400 merriweather-light from-[#1515159b] to-[#99999900] z-20">
             <div className="navbar-start">
                 <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -51,7 +51,7 @@ const Navbar = () => {
                         {items}
                     </ul>
                 </div>
-                <a className="text-4xl text-white">COZY STAY</a>
+                <a className=" text-lg md:text-4xl text-white">COZY STAY</a>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
