@@ -4,6 +4,7 @@ import { useLocation, useParams } from 'react-router-dom';
 import moment from 'moment';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import { Fade } from 'react-awesome-reveal';
 
 const Review = () => {
     const { id } = useParams()
@@ -60,23 +61,25 @@ const Review = () => {
     return (
         <div className=' '>
             <div className=' bg-[url("https://i.ibb.co/jZ1Y4Z8/2150315625.jpg")] h-[760px] w-full bg-cover'>
+
                 <div className=' w-full h-full bg-gradient-to-b from-[#15151589] to-transparent flex flex-col gap-4 items-center justify-center'>
                     <h1 className=' text-white text-5xl font-semibold text-center merriweather-light'>Please Share Your Views</h1>
-                    <p className='w-80 text-center lg:w-[600px] md:w-[500px] inter-font text-white '>Welcome to our review section! Your feedback is invaluable to us as we continuously strive to enhance your experience. Take a moment to share your thoughts, insights, and suggestions with us.</p>
+                    <p data-aos='fade-up' data-aos-duration='1000'  className='w-80 text-center lg:w-[600px] md:w-[500px] inter-font text-white pb-32'>Welcome to our review section! Your feedback is invaluable to us as we continuously strive to enhance your experience. Take a moment to share your thoughts, insights, and suggestions with us.</p>
                 </div>
-
 
                 <div className=' bg-transparent absolute bottom-5 left-[34%]'>
                     <form onSubmit={handleReview} className=' text-black lg:w-[500px] border'>
+
                         <div className=' grid  gap-4 p-5'>
-                            <input placeholder=' username' className=' border' type="text" name='name' id='name' defaultValue={user.displayName} disabled />
-                            <input placeholder=' rating' name='rating' className=' border p-1' step='0.1' type="number" min={1} max={5} />
-                            {/* <input placeholder=' time' className=' border' type="time" /> */}
+                            <input placeholder=' username' data-aos='fade-right' data-aos-duration='1000' className=' border' type="text" name='name' id='name' defaultValue={user.displayName} disabled />
+                            <input data-aos='fade-left' data-aos-duration='1000' placeholder=' rating' name='rating' className=' border p-1' step='0.1' type="number" min={1} max={5} />
                             <textarea name="comment" className=' p-2' placeholder='please write your comment here ' id=""></textarea>
                         </div>
-                        <div className=' w-full px-5'>
-                            <input type="submit" value="submit" className='px-5 bg-yellow-500 w-full p-1 text-white' />
-                        </div>
+                        <Fade duration={1800} direction='up'>
+                            <div className=' w-full px-5 pb-3'>
+                                <input type="submit" value="submit" className='px-5 bg-yellow-500 w-full p-1 text-white' />
+                            </div>
+                        </Fade>
                     </form>
                 </div>
             </div>

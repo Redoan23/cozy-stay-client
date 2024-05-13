@@ -1,4 +1,5 @@
 import React from 'react';
+import { Fade } from 'react-awesome-reveal';
 import { CgArrowTopRight } from 'react-icons/cg';
 import { FaLocationArrow, FaRegPaperPlane } from 'react-icons/fa';
 // import img from '../../../../public/cool-background.png'
@@ -7,7 +8,8 @@ const Newsletter = () => {
     return (
         <div className=' px-3 relative pb-40'>
             <hr />
-            <div  className=' pt-10' >
+            <Fade duration={1000} cascade={true} direction='up'>
+            <div className=' pt-10' >
                 <h3 className=' text-yellow-500 pb-10 px-2 inter-font'>Stay tuned with Cozy Stay</h3>
             </div>
             <div className=' text-white flex lg:flex-row gap-7 flex-col items-center'>
@@ -26,6 +28,7 @@ const Newsletter = () => {
                     </div>
                 </div>
             </div>
+            </Fade>
         </div>
     );
 };

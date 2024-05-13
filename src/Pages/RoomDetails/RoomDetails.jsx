@@ -8,6 +8,7 @@ import 'swiper/css/navigation';
 import { AuthContext } from '../AuthProvider/AuthProvider';
 import Swal from 'sweetalert2'
 import { IoStar } from 'react-icons/io5';
+import { Fade } from 'react-awesome-reveal';
 
 
 const RoomDetails = () => {
@@ -145,8 +146,10 @@ const RoomDetails = () => {
         <div>
             <div className=' text-white h-[700px] bg-bottom w-full relative' style={{ backgroundImage }}>
                 <div className="absolute flex flex-col h-full w-full justify-center items-center inset-0 bg-gradient-to-b from-[#1515159e] to-transparent space-y-5">
-                    <h3 className=' text-3xl lg:text-6xl font-semibold text-center merriweather-light'>Find every information at one Place</h3>
-                    <p className=' lg:w-[600px] text-center w-72 inter-font' >Welcome to your cozy retreat! Below, discover all the details about your delightful haven, carefully crafted for your comfort and enjoyment</p>
+                    <Fade cascade={true} direction='up' duration={1200}>
+                        <h3 className=' text-3xl lg:text-5xl font-semibold text-center merriweather-light'>Find every information at one Place</h3>
+                        <p className=' lg:w-[600px] text-center w-72 inter-font' >Welcome to your cozy retreat! Below, discover all the details about your delightful haven, carefully crafted for your comfort and enjoyment</p>
+                    </Fade>
                 </div>
             </div>
 
@@ -174,28 +177,36 @@ const RoomDetails = () => {
 
                 <div className=' pt-10 pb-10'>
                     <div className=' text-white space-y-5 px-4'>
-                        <h3 className='text-3xl font-semibold merriweather-light'>{roomData.room_type}</h3>
-                        <div className=' text-yellow-400 flex gap-4 merriweather-light'>
-                            <p>Price : {roomData.ppn} $/ Night</p>
-                            <p>Size : {roomData.room_size}</p>
-                            <p>Availability : {roomData.availability}</p>
-                            {roomData?.special_offers ? <p>Special Offers : {roomData.special_offers}</p> : " "}
+                        <Fade cascade={true} duration={1000}>
+                            <h3 className='text-3xl font-semibold merriweather-light'>{roomData.room_type}</h3>
+                        </Fade>
+                        <Fade cascade={true} duration={1300}>
+                            <div className=' text-yellow-400 flex gap-4 merriweather-light'>
+                                <p>Price : {roomData.ppn} $/ Night</p>
+                                <p>Size : {roomData.room_size}</p>
+                                <p>Availability : {roomData.availability}</p>
+                                {roomData?.special_offers ? <p>Special Offers : {roomData.special_offers}</p> : " "}
+                            </div>
+                        </Fade>
+                    </div>
+                    <Fade cascade={true} duration={1600}>
+                        <div className=' text-white px-4 pt-10 lg:w-[800px]'>
+                            <p>
+                                {
+                                    roomData.description
+                                }
+                            </p>
                         </div>
-                    </div>
-                    <div className=' text-white px-4 pt-10 lg:w-[800px]'>
-                        <p>
-                            {
-                                roomData.description
-                            }
-                        </p>
-                    </div>
+                    </Fade>
                 </div>
             </div>
             <hr />
             <div className=' py-10'>
-                <div>
-                    <h3 className=' text-white font-semibold text-center pb-10 text-2xl merriweather-light'>Checkout</h3>
-                </div>
+                <Fade cascade={true} duration={1000}>
+                    <div>
+                        <h3 className=' text-white font-semibold text-center pb-10 text-2xl merriweather-light'>Checkout</h3>
+                    </div>
+                </Fade>
                 <form onSubmit={handleCheckOut}>
                     <div className=' grid grid-cols-2 gap-6 p-5 text-white place-items-center'>
                         <div className=' w-full'>
@@ -216,30 +227,34 @@ const RoomDetails = () => {
                         </div>
 
                     </div>
-                    <div className=' w-full mx-auto text-center px-5'>
-                        <input className=' w-full text-white py-2 bg-yellow-600' type="submit" value="Book Now" />
-                    </div>
+                    <Fade cascade={true} direction='up' duration={1500}>
+                        <div className=' w-full mx-auto text-center px-5'>
+                            <input className=' w-full text-white py-2 bg-yellow-600' type="submit" value="Book Now" />
+                        </div>
+                    </Fade>
                 </form>
             </div>
             <hr />
-
-            <div>
-                <h3 className=' font-semibold text-white text-center text-5xl py-14 merriweather-light'>User Reviews</h3>
-            </div>
-
-            <div className=' grid gap-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 place-items-center pb-10'>
-                {
-                    reviews.map(review =>
-                        <div key={review._id} className="bg-white rounded-lg shadow-lg p-4 min-h-[350px] w-96 flex flex-col space-y-5">
-                            <div className=' flex flex-col items-center justify-start'>
-                                <div className="text-4xl font-bold flex items-center justify-center gap-1"><IoStar></IoStar>{review.rating}</div>
-                                <div><h3 className='inter-font font-semibold py-2 '>{review?.userName}</h3></div>
-                                <div> <p>{review.postingTime}</p> </div>
-                            </div>
-                            <div className="text-gray-500">{review.comment}</div>
-                        </div>)
-                }
-            </div>
+            <Fade cascade={true}  duration={1500}>
+                <div>
+                    <h3 className=' font-semibold text-white text-center text-5xl py-14 merriweather-light'>User Reviews</h3>
+                </div>
+            </Fade>
+            <Fade cascade={true} duration={1600}>
+                <div className=' grid gap-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 place-items-center pb-10'>
+                    {
+                        reviews.map(review =>
+                            <div key={review._id} className="bg-white rounded-lg shadow-lg p-4 min-h-[350px] w-96 flex flex-col space-y-5">
+                                <div className=' flex flex-col items-center justify-start'>
+                                    <div className="text-4xl font-bold flex items-center justify-center gap-1"><IoStar></IoStar>{review.rating}</div>
+                                    <div><h3 className='inter-font font-semibold py-2 '>{review?.userName}</h3></div>
+                                    <div> <p>{review.postingTime}</p> </div>
+                                </div>
+                                <div className="text-gray-500">{review.comment}</div>
+                            </div>)
+                    }
+                </div>
+            </Fade>
             <div>
                 {
                     reviews.length <= 0 &&

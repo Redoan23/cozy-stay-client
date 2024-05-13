@@ -4,7 +4,10 @@ import Map from './Map/Map';
 import Newsletter from './Newsletter/Newsletter';
 import Swal from 'sweetalert2';
 import UserReview from './UserReview/UserReview';
-;
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import { Fade } from "react-awesome-reveal";
+AOS.init();
 
 const Home = () => {
 
@@ -44,7 +47,7 @@ const Home = () => {
                 confirmButtonAriaLabel: "Close",
                 customClass: {
                     confirmButton: 'absolute top-0 rounded-none right-0 p-0 m-0 bg-none border-none text-3xl text-black',
-                    popup: ' padding-0 margin-0', 
+                    popup: ' padding-0 margin-0',
 
                 },
             });
@@ -64,18 +67,21 @@ const Home = () => {
         <div onClick={() => setAdd(false)}>
             <div className=' relative bg-[url("https://i.ibb.co/BsG7K2h/2150497283-1.jpg")] h-[800px] w-full bg-cover'>
                 <div className=' text-white z-10 absolute bg-gradient-to-b from-[#1515159b] to-[#99999900] w-full h-full flex items-center flex-col justify-center gap-5'>
-                    <h1 className='merriweather-light text-5xl lg:text-8xl font-bold text-center'>COZY STAY</h1>
-                    <p className=' inter-font text-xs lg:text-lg text-yellow-100 text-center font-semibold'>welcome to cozy stay a luxurious hotel in Dhaka</p>
+                    <h1 className='merriweather-light text-5xl lg:text-8xl font-bold text-center' data-aos='fade-right' data-aos-duration='1200' >COZY STAY</h1>
+                    <p className=' inter-font text-xs lg:text-lg text-yellow-100 text-center font-semibold' data-aos='fade-left' data-aos-duration='1900'>welcome to cozy stay a luxurious hotel in Dhaka</p>
                 </div>
             </div>
 
             {/* featured rooms section */}
+
             <div className=' mt-24'>
                 <div>
                     <h3 className=' merriweather-light text-center text-3xl font-semibold pb-10 text-white'>Rooms</h3>
+
                     <div>
                         <FeaturedRooms></FeaturedRooms>
                     </div>
+
                 </div>
                 <div className=' mt-24'>
                     <Map></Map>
@@ -87,9 +93,10 @@ const Home = () => {
                     </div>
                 </div>
                 <div className=' mt-32'>
-                    <Newsletter></Newsletter>
+                        <Newsletter></Newsletter>
                 </div>
             </div>
+
             {/* <div onClick={toggleAdd} style={{ display: classAdd }}>
                 <div className=' absolute ease-in-out top-[28%] left-[41%] z-30 shadow-2xl overlay overflow-hidden'>
                     <div className=' bg-[url("https://i.ibb.co/znpsbQt/2150683419.jpg")] h-[450px] w-[280px] bg-cover style="filter: blur(1px);"'>

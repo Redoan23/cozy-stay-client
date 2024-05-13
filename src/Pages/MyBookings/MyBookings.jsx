@@ -4,6 +4,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../AuthProvider/AuthProvider';
+import { Fade } from 'react-awesome-reveal';
 
 
 
@@ -129,8 +130,10 @@ const MyBookings = () => {
         <div>
             <div className=' bg-[url("https://i.ibb.co/DQkWbGT/hotel-room-unsplash.jpg")] h-[600px] w-full bg-cover'>
                 <div className=' text-white bg-gradient-to-b from-[#151515ac] to-[#2a29293e] h-full w-full flex flex-col items-center justify-center'>
-                    <h3 className=' font-semibold text-5xl text-center pb-5 merriweather-light'>All Your Bookings At one Place</h3>
-                    <p className=' text-sm text-center text-yellow-500 inter-font'>manage your bookings like never before</p>
+                    <Fade cascade={true} direction='up' duration={1000}>
+                        <h3 className=' font-semibold text-5xl text-center pb-5 merriweather-light'>All Your Bookings At one Place</h3>
+                        <p className=' text-sm text-center text-yellow-500 inter-font'>manage your bookings like never before</p>
+                    </Fade>
                 </div>
             </div>
             <div>

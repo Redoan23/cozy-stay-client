@@ -1,21 +1,32 @@
 import React from 'react';
+import { Fade } from 'react-awesome-reveal';
 
 const AboutUs = () => {
     return (
-        <div className=' bg-[url("https://i.ibb.co/Yd2WqXH/pexels-hotel-sevenstormphotography-1114446.jpg")] h-[1500px] md:h-[1100px] w-full bg-cover mx-auto'>
-            <section className=" text-white py-20  bg-gradient-to-b from-[#15151577] to-transparent w-full h-full relative">
+        <div className=' bg-[url("https://i.ibb.co/3dNrX30/10693.jpg")] h-[1500px] md:h-[1100px] w-full bg-bottom mx-auto'>
+            <section className=" text-white py-20  bg-gradient-to-b from-[#15151598] to-transparent w-full h-full relative">
+
                 <div className="container mx-auto px-4 mt-20">
-                    <h2 className="text-3xl font-bold text-yellow-500 mb-6">About Us</h2>
-                    <p className="text-lg mb-8">
-                        Welcome to Hotel CozyStay, where luxury meets comfort. Located in the heart of a bustling city, our hotel offers a tranquil oasis for travelers seeking relaxation and rejuvenation. With state-of-the-art facilities, world-class amenities, and personalized service, we strive to create memorable experiences for every guest.
-                    </p>
-                    <p className="text-lg mb-8">
-                        At Hotel CozyStay, we are committed to exceeding your expectations and ensuring that your stay with us is nothing short of exceptional. Whether you're traveling for business or leisure, our dedicated team is here to cater to your every need, making your visit truly unforgettable.
-                    </p>
-                    <p className="text-lg mb-8">
-                        Experience the warmth and hospitality of Hotel CozyStay and discover why we're the preferred choice for discerning travelers around the world. We look forward to welcoming you soon!
-                    </p>
+                    <Fade duration={1000} direction='up'>
+                        <h2 className="text-3xl font-bold text-yellow-500 mb-6">About Us</h2>
+                    </Fade>
+                    <Fade duration={1200} direction='up'>
+                        <p className="text-lg mb-8">
+                            Welcome to Hotel CozyStay, where luxury meets comfort. Located in the heart of a bustling city, our hotel offers a tranquil oasis for travelers seeking relaxation and rejuvenation. With state-of-the-art facilities, world-class amenities, and personalized service, we strive to create memorable experiences for every guest.
+                        </p>
+                    </Fade>
+                    <Fade duration={1400} direction='up'>
+                        <p className="text-lg mb-8">
+                            At Hotel CozyStay, we are committed to exceeding your expectations and ensuring that your stay with us is nothing short of exceptional. Whether you're traveling for business or leisure, our dedicated team is here to cater to your every need, making your visit truly unforgettable.
+                        </p>
+                    </Fade>
+                    <Fade duration={1600} direction='up'>
+                        <p className="text-lg mb-8">
+                            Experience the warmth and hospitality of Hotel CozyStay and discover why we're the preferred choice for discerning travelers around the world. We look forward to welcoming you soon!
+                        </p>
+                    </Fade>
                 </div>
+
             </section>
 
             <section className="bg-gray-100 bg-opacity-80 lg:top-[75%] md:top-[120%] top-[140%]  mx-auto absolute">

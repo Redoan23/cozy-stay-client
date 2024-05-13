@@ -6,6 +6,7 @@ import 'swiper/css/navigation';
 import './featuredRoom.css'
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { Fade } from 'react-awesome-reveal';
 
 
 const FeaturedRooms = () => {
@@ -73,11 +74,17 @@ const FeaturedRooms = () => {
                             <div className="card w-96 rounded-none shadow-none bg-gray-200">
                                 <figure><img src={rooms.singleImg} alt="Shoes" /></figure>
                                 <div className="card-body space-y-3 text-left py-10 px-6">
-                                    <h2 className="card-title w-full text-2xl font-thin merriweather-light">{rooms.room_type}</h2>
-                                    <p className=' font-thin h-28'>{rooms.description.length > 60 ? <div>{rooms.description.slice(0, 160)} . . .</div> : rooms.description}</p>
-                                    <div className="card-actions">
-                                        <Link to={`/roomdetails/${rooms._id}`} ><button className="btn text-center mx-auto w-44">Book Now</button></Link>
-                                    </div>
+                                    <Fade cascade={true} direction='up' duration={1100}>
+                                        <h2 className="card-title w-full text-2xl font-thin merriweather-light">{rooms.room_type}</h2>
+                                    </Fade>
+                                    <Fade cascade={true} duration={1500}>
+                                        <p className=' font-thin h-28'>{rooms.description.length > 60 ? <div>{rooms.description.slice(0, 160)} . . .</div> : rooms.description}</p>
+                                    </Fade>
+                                    <Fade cascade={true} duration={1500}>
+                                        <div className="card-actions">
+                                            <Link to={`/roomdetails/${rooms._id}`} ><button className="btn text-center mx-auto w-44">Book Now</button></Link>
+                                        </div>
+                                    </Fade>
                                 </div>
                             </div>
                         </SwiperSlide>)
