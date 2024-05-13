@@ -82,10 +82,11 @@ const Home = () => {
         <div onClick={() => setAdd(false)}>
             <div className=' relative bg-[url("https://i.ibb.co/znLY5s4/2150497283.jpg")] h-[800px] w-full bg-cover'>
                 <div className=' text-white z-10 absolute bg-gradient-to-b from-[#1515159b] to-[#99999900] w-full h-full flex items-center flex-col justify-center gap-5'>
-                    <h1 className=' text-8xl font-bold text-center'>COZY STAY</h1>
-                    <p className=' text-lg text-yellow-100 text-center font-semibold'>welcome to cozy stay a luxurious hotel in Dhaka</p>
+                    <h1 className=' text-5xl lg:text-8xl font-bold text-center'>COZY STAY</h1>
+                    <p className=' text-xs lg:text-lg text-yellow-100 text-center font-semibold'>welcome to cozy stay a luxurious hotel in Dhaka</p>
                 </div>
             </div>
+
             {/* featured rooms section */}
             <div className=' mt-24'>
                 <div>

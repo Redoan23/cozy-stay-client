@@ -22,12 +22,12 @@ const Newsletter = () => {
             <div>
                 <h3 className=' text-yellow-500 pb-10 px-2'>Stay tuned with Cozy Stay</h3>
             </div>
-            <div className=' text-white flex items-center'>
-                <h3 className=' text-5xl font-semibold w-1/2 leading-snug' >Sign Up for Our Newsletter to Receive News, Offers and deals</h3>
-                <div className=' w-1/2 space-y-4'>
+            <div className=' text-white flex lg:flex-row flex-col items-center'>
+                <h3 className=' text-5xl font-semibold lg:w-1/2 leading-snug' >Sign Up for Our Newsletter to Receive News, Offers and deals</h3>
+                <div className='w-full lg:w-1/2 lg:space-y-4 space-y-10'>
                     <div>
-                        <input className='  w-3/4 border-b-2 border-white bg-transparent p-3' type="email" name="email" id="email" placeholder=' Your Email Address' />
-                        <div className=' absolute right-[13%] top-[10%] flex items-center gap-2 text-7xl'>
+                        <input className=' w-full lg:w-3/4 border-b-2 border-white bg-transparent p-3' type="email" name="email" id="email" placeholder=' Your Email Address' />
+                        <div className=' absolute lg:right-[13%] lg:top-[10%] flex items-center gap-2 text-7xl'>
                             <input className='text-lg' type="submit" value="Subscribe" />
                             <FaRegPaperPlane className=' text-xl font-bold' width={'100px'} fontSize={200} />
                         </div>
