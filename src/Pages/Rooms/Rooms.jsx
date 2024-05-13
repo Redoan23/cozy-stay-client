@@ -19,13 +19,22 @@ const Rooms = () => {
         console.log(from, to)
 
         if (!from) {
-            return alert('you should put at least a value to from')
+            return Toast.fire({
+                icon: "error",
+                title: "Enter value in the From field"
+            });
         }
         if (!to) {
-            return alert("put a value in the to box")
+            return Toast.fire({
+                icon: "error",
+                title: "Enter value in the To field"
+            });
         }
         if (from > to) {
-            return alert('dude from can not be bigger than to')
+            return Toast.fire({
+                icon: "error",
+                title: "Starting value cannot be bigger than end value"
+            });
         }
 
         axios.get(`http://localhost:5000/rooms/filter?from=${from}&to=${to}`)

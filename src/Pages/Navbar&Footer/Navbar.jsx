@@ -1,13 +1,35 @@
 import React, { useContext } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { AuthContext } from '../AuthProvider/AuthProvider';
+import Swal from 'sweetalert2';
 
 const Navbar = () => {
 
     const { user, logOutUser } = useContext(AuthContext)
 
+    // swal notification
+    const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+            toast.onmouseenter = Swal.stopTimer;
+            toast.onmouseleave = Swal.resumeTimer;
+        }
+    });
+
+    // swal notification
+
     const handleLogout = () => {
         logOutUser()
+            .then(res => {
+                Toast.fire({
+                    icon: "success",
+                    title: "Successfully logged out"
+                });
+            })
     }
 
     const items = <>

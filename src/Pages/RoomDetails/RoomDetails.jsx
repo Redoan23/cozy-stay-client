@@ -19,6 +19,18 @@ const RoomDetails = () => {
     const [update, setUpdate] = useState(null)
     const [reviews, setReviews] = useState([])
 
+    // swal notification
+    const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+            toast.onmouseenter = Swal.stopTimer;
+            toast.onmouseleave = Swal.resumeTimer;
+        }
+    });
 
     useEffect(() => {
         axios.get(`http://localhost:5000/user/review/${id}`)
@@ -62,11 +74,17 @@ const RoomDetails = () => {
         }
 
         if (availability === 'Not Available') {
-            return alert('this is already booked you can not book it anymore')
+            return Toast.fire({
+                icon: "info",
+                title: "This room is already booked"
+            });
         }
 
         if (!startDate) {
-            return alert('start is empty')
+            return Toast.fire({
+                icon: "error",
+                title: "Enter the date"
+            });
         }
         // if (!endDate) {
         //     return alert('end is empty')
@@ -209,10 +227,12 @@ const RoomDetails = () => {
             <div className=' grid gap-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 place-items-center pb-10'>
                 {
                     reviews.map(review =>
-                        <div key={review._id} className="bg-white rounded-lg shadow-lg p-4 w-96 flex flex-col items-center justify-center space-y-2">
-                            <div className="text-4xl font-bold flex items-center justify-center gap-1"><IoStar></IoStar>{review.rating}</div>
-                            <div><h3 className=' font-semibold py-2'>{review?.userName}</h3></div>
-                            <div> <p>{review.postingTime}</p> </div>
+                        <div key={review._id} className="bg-white rounded-lg shadow-lg p-4 min-h-[350px] w-96 flex flex-col space-y-5">
+                            <div className=' flex flex-col items-center justify-start'>
+                                <div className="text-4xl font-bold flex items-center justify-center gap-1"><IoStar></IoStar>{review.rating}</div>
+                                <div><h3 className=' font-semibold py-2'>{review?.userName}</h3></div>
+                                <div> <p>{review.postingTime}</p> </div>
+                            </div>
                             <div className="text-gray-500">{review.comment}</div>
                         </div>)
                 }

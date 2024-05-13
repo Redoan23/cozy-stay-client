@@ -11,7 +11,21 @@ const MyBookings = () => {
     const [bookedData, setBookedData] = useState([])
     const [update, setUpdate] = useState(null)
     const availability = 'Not Available'
-    console.log(bookedData)
+
+
+    // swal notification
+
+    const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+            toast.onmouseenter = Swal.stopTimer;
+            toast.onmouseleave = Swal.resumeTimer;
+        }
+    });
 
 
     useEffect(() => {
@@ -23,6 +37,8 @@ const MyBookings = () => {
             })
     }, [update])
 
+
+
     const handleUpdateDate = (e, id) => {
         e.preventDefault()
         const date = e.target.date.value
@@ -30,7 +46,10 @@ const MyBookings = () => {
         // console.log(date)
 
         if (!date) {
-            return alert('please choose a date to update')
+            return Toast.fire({
+                icon: "info",
+                title: "Please choose a date to update the date"
+            });
         }
 
         Swal.fire({
@@ -48,6 +67,7 @@ const MyBookings = () => {
                 axios.put(`http://localhost:5000/booked/user/${id}`, { date })
                     .then(res => {
                         console.log(res.data)
+                        setUpdate(res.data)
                         if (res.data.modifiedCount > 0) {
                             Swal.fire({
                                 title: "Updated!",
@@ -63,20 +83,16 @@ const MyBookings = () => {
 
     const handleCancelBooking = (id, roomId, startDate) => {
 
-        // const currentDate = moment(startDate)
-        // const today = moment().toString()
-        // console.log(today, startDate)
-        // const oneDayBeforeStartDate = currentDate.subtract({"days":2}).toString()
-        // console.log(oneDayBeforeStartDate)
-        // if(today===oneDayBeforeStartDate){
-        //    return alert('today is the same')
-        // }
-        // else{
-        //   return  alert ('not  the same day')
-        // }
+        const currentDate = moment(startDate, "YYYY-MM-DD")
+        const today = moment()
+        const oneDayBeforeStartDate = currentDate.subtract({ "days": 1 })
+        if (today.isSame(oneDayBeforeStartDate, 'date')) {
 
-
-
+            return Toast.fire({
+                icon: "error",
+                title: "Booking cannot be canceled before a day of arrival date"
+            });
+        }
 
         Swal.fire({
             title: "Are you sure?",
@@ -104,67 +120,67 @@ const MyBookings = () => {
                     icon: "success"
                 });
             }
-        });
-    }
+            });
+        }
 
     return (
-        <div>
-            <div className=' bg-[url("https://i.ibb.co/DQkWbGT/hotel-room-unsplash.jpg")] h-[600px] w-full bg-cover'>
-                <div className=' text-white bg-gradient-to-b from-[#151515ac] to-[#2a29293e] h-full w-full flex flex-col items-center justify-center'>
-                    <h3 className=' font-semibold text-5xl text-center pb-5'>All Your Bookings At one Place</h3>
-                    <p className=' text-sm text-center text-yellow-500'>manage your bookings like never before</p>
-                </div>
-            </div>
             <div>
-                <div className="overflow-x-auto mt-5 text-white">
-                    <table className="table">
-                        < caption className=' pb-5'>
-                            <tr className='text-4xl text-center'>
-                                Booked Rooms
-                            </tr>
-                        </caption>
-                        <tbody>
-                            {
-                                bookedData.map(room =>
+                <div className=' bg-[url("https://i.ibb.co/DQkWbGT/hotel-room-unsplash.jpg")] h-[600px] w-full bg-cover'>
+                    <div className=' text-white bg-gradient-to-b from-[#151515ac] to-[#2a29293e] h-full w-full flex flex-col items-center justify-center'>
+                        <h3 className=' font-semibold text-5xl text-center pb-5'>All Your Bookings At one Place</h3>
+                        <p className=' text-sm text-center text-yellow-500'>manage your bookings like never before</p>
+                    </div>
+                </div>
+                <div>
+                    <div className="overflow-x-auto mt-5 text-white">
+                        <table className="table">
+                            < caption className=' pb-5'>
+                                <tr className='text-4xl text-center'>
+                                    Booked Rooms
+                                </tr>
+                            </caption>
+                            <tbody>
+                                {
+                                    bookedData.map(room =>
 
-                                    <tr key={room._id}>
-                                        <td>
-                                            <div className="flex items-center gap-3">
-                                                <div className="avatar">
-                                                    <div className="mask mask-parallelogram w-52 h-52 overflow-hidden">
-                                                        <img className=' hover:scale-[1.15] duration-300 ease-in-out' src={room.imageInfo} alt="Avatar Tailwind CSS Component" />
+                                        <tr key={room._id}>
+                                            <td>
+                                                <div className="flex items-center gap-3">
+                                                    <div className="avatar">
+                                                        <div className="mask mask-parallelogram w-52 h-52 overflow-hidden">
+                                                            <img className=' hover:scale-[1.15] duration-300 ease-in-out' src={room.imageInfo} alt="Avatar Tailwind CSS Component" />
+                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                        <div className="font-bold"> {room.roomName}</div>
+                                                        <div className="text-sm opacity-50">{room?.ppn} $</div>
                                                     </div>
                                                 </div>
-                                                <div>
-                                                    <div className="font-bold"> {room.roomName}</div>
-                                                    <div className="text-sm opacity-50">{room?.ppn} $</div>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <Link to={{ pathname: `/reviews/${room.roomId}`, state: { mainIdOfTheRoom: room.mainIdOfTheRoom } }}><button className="btn btn-ghost btn-xs bg-orange-500 text-white">Post A Review</button></Link>
-                                        </td>
-                                        <td>
-                                            <form className=' flex items-center gap-2' onSubmit={(e) => handleUpdateDate(e, room._id)}>
-                                                <input className=' border bg-gray-100 text-black' type="date" name="date" id="date" />
-                                                <input type="submit" className=' btn btn-ghost btn-xs bg-green-600 text-white' value="Update Date" />
-                                            </form>
+                                            </td>
+                                            <td>
+                                                <Link to={{ pathname: `/reviews/${room.roomId}`, state: { mainIdOfTheRoom: room.mainIdOfTheRoom } }}><button className="btn btn-ghost btn-xs bg-orange-500 text-white">Post A Review</button></Link>
+                                            </td>
+                                            <td>
+                                                <form className=' flex items-center gap-2' onSubmit={(e) => handleUpdateDate(e, room._id)}>
+                                                    <input className=' border bg-gray-100 text-black' type="date" name="date" id="date" />
+                                                    <input type="submit" className=' btn btn-ghost btn-xs bg-green-600 text-white' value="Update Date" />
+                                                </form>
 
-                                        </td>
-                                        <th>
-                                            <button onClick={() => handleCancelBooking(room._id, room.roomId, room.startDate)} className="btn btn-ghost btn-xs bg-red-600 text-white">Cancel Booking </button>
-                                        </th>
-                                    </tr>
-                                )
-                            }
+                                            </td>
+                                            <th>
+                                                <button onClick={() => handleCancelBooking(room._id, room.roomId, room.startDate)} className="btn btn-ghost btn-xs bg-red-600 text-white">Cancel Booking </button>
+                                            </th>
+                                        </tr>
+                                    )
+                                }
 
-                        </tbody>
-                    </table>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
+
             </div>
+        );
+    };
 
-        </div>
-    );
-};
-
-export default MyBookings;
+    export default MyBookings;

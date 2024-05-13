@@ -1,10 +1,27 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../AuthProvider/AuthProvider';
+import Swal from 'sweetalert2';
 
 const Login = () => {
 
     const { loginUser, googleSignIn } = useContext(AuthContext)
+
+
+    // swal notification
+    const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+            toast.onmouseenter = Swal.stopTimer;
+            toast.onmouseleave = Swal.resumeTimer;
+        }
+    });
+
+
 
     const handleLogin = (e) => {
         e.preventDefault()
@@ -14,11 +31,23 @@ const Login = () => {
         console.log(email, password)
 
         loginUser(email, password)
-            .then(res => console.log(res.user))
+            .then(res => {
+                console.log(res.user)
+                Toast.fire({
+                    icon: "success",
+                    title: "Successfully logged in"
+                });
+            })
             .catch(err => console.error(err))
     }
     const handleGoogle = () => {
         googleSignIn()
+            .then(res => {
+                Toast.fire({
+                    icon: "success",
+                    title: "Successfully logged in"
+                });
+            })
     }
     return (
         <div className=' '>

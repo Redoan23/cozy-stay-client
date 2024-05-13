@@ -2,11 +2,26 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../AuthProvider/AuthProvider';
 import { updateProfile } from 'firebase/auth';
+import Swal from 'sweetalert2';
 
 const Register = () => {
 
     const { createUser, user } = useContext(AuthContext)
     console.log(user)
+
+    // swal notification
+    const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+            toast.onmouseenter = Swal.stopTimer;
+            toast.onmouseleave = Swal.resumeTimer;
+        }
+    });
+
 
     const handleRegister = (e) => {
         e.preventDefault()
@@ -24,6 +39,12 @@ const Register = () => {
                 updateProfile(currentUser, {
                     displayName: name
                 })
+
+                Toast.fire({
+                    icon: "success",
+                    title: "Successfully created account and logged in"
+                });
+
             })
             .catch(err => console.error(err))
     }

@@ -3,6 +3,7 @@ import { AuthContext } from '../../AuthProvider/AuthProvider';
 import { useLocation, useParams } from 'react-router-dom';
 import moment from 'moment';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 const Review = () => {
     const { id } = useParams()
@@ -10,6 +11,20 @@ const Review = () => {
     const location = useLocation()
     const mainIdOfTheRoom = location.state?.mainIdOfTheRoom
     console.log(mainIdOfTheRoom)
+
+
+    // swal notification
+    const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+            toast.onmouseenter = Swal.stopTimer;
+            toast.onmouseleave = Swal.resumeTimer;
+        }
+    });
 
 
     const handleReview = e => {
@@ -26,11 +41,21 @@ const Review = () => {
         console.log(reviewData)
 
         if (!rating || !comment) {
-            return alert('fill all the input')
+            return Toast.fire({
+                icon: "error",
+                title: " Please fill all the field"
+            });
         }
 
         axios.post('http://localhost:5000/user/review', { reviewData })
-            .then(res => { console.log(res.data) })
+            .then(res => {
+                console.log(res.data)
+                Toast.fire({
+                    icon: "success",
+                    title: "Review added successfully. You can find this review in room details"
+                });
+            })
+        form.reset()
     }
     return (
         <div className=' '>
