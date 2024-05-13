@@ -54,7 +54,7 @@ const Register = () => {
             <div className=' bg-[url("https://i.ibb.co/t2YZmbV/bluesofalight.jpg")] h-[650px] w-full bg-cover bg-no-repeat'>
                 <div className=' flex flex-col items-center gap-5 justify-center h-full w-full bg-gradient-to-b from-[#151515a8] to-[#99999900]'>
                     <h3 className=' text-6xl font-semibold text-center text-white'>Register Account</h3>
-                    <Link to={'/login'}><button className=' shadow-xl w-96 px-5 py-3 bg-yellow-600 text-white mx-auto'>Login here</button></Link>
+                    <Link to={'/login'}><button className=' shadow-xl w-72 md:w-96 px-5 py-3 bg-yellow-600 text-white mx-auto'>Login here</button></Link>
                 </div>
             </div>
             <div>

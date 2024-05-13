@@ -1,11 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 const Rooms = () => {
     const loadedData = useLoaderData()
     console.log(loadedData)
     const [data, setData] = useState(loadedData)
+
+    // swal notification
+    const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+            toast.onmouseenter = Swal.stopTimer;
+            toast.onmouseleave = Swal.resumeTimer;
+        }
+    });
+
 
     useEffect(() => {
         axios.get('')
@@ -53,18 +68,11 @@ const Rooms = () => {
                 <div className=' w-full h-full bg-gradient-to-b from-[#1515156d] to-[#99999900] flex justify-center items-center flex-col space-y-4'>
                     <h3 className=' text-5xl font-semibold text-center text-white'>Welcome to Our Rooms</h3>
                     <p className='text-white pb-10'>please select the rooms feel suitable in</p>
-                    {/* <div className="dropdown">
-                        <div tabIndex={0} role="button" className="btn m-1">Sort by Price Per Night <IoMdArrowDropdown/></div>
-                        <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
-                            <li><a>Item 1</a></li>
-                            <li><a>Item 2</a></li>
-                        </ul>
-                    </div> */}
                     <div>
                         <div>
                             <h3 className=' text-white text-2xl text-center pb-6'>Filter By Price Range</h3>
                             <form onSubmit={handleSort}>
-                                <div className=' flex gap-5'>
+                                <div className=' flex md:flex-row flex-col items-center gap-5'>
                                     <label htmlFor="from">
                                         <input className=' border-none bg-white  p-2' type="number" name="from" id="from" placeholder='From' />
                                     </label>
@@ -87,11 +95,6 @@ const Rooms = () => {
                         {/* head */}
                         <thead className=' text-white text-base' >
                             <tr>
-                                {/* <th>
-                                    <label>
-                                        <input type="checkbox" className="checkbox" />
-                                    </label>
-                                </th> */}
                                 <th>Type</th>
                                 <th>Price Per Night</th>
                                 <th>Reviews</th>
@@ -120,7 +123,12 @@ const Rooms = () => {
                                 </td>
                                 <td>Purple</td>
                                 <th>
-                                    <button className="btn btn-ghost btn-xs bg-yellow-500">Add a Review</button>
+                                    <button onClick={() => {
+                                        return Toast.fire({
+                                            icon: "info",
+                                            title: "Book a room to add review"
+                                        });
+                                    }} className="btn btn-ghost btn-xs bg-yellow-500">Add a Review</button>
                                 </th>
                             </tr>
                         </tbody>)

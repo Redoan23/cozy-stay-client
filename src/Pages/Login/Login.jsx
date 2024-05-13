@@ -54,7 +54,7 @@ const Login = () => {
             <div className=' bg-[url("https://i.ibb.co/VNLScXP/2151037538-1.jpg")] h-[650px] w-full bg-cover bg-no-repeat]' >
                 <div className=' flex flex-col items-center gap-5 justify-center h-full w-full bg-gradient-to-b from-[#1515158b] to-[#99999900]'>
                     <h3 className=' text-6xl font-semibold text-center text-white'>My Account</h3>
-                    <Link to={'/register'}><button className=' shadow-xl w-96 px-5 py-3 bg-yellow-600 text-white mx-auto'>Create an Account</button></Link>
+                    <Link to={'/register'}><button className=' shadow-xl w-72 md:w-96 md:px-5 py-3 bg-yellow-600 text-white mx-auto'>Create an Account</button></Link>
                 </div>
             </div>
             <div className=''>

@@ -144,32 +144,35 @@ const RoomDetails = () => {
     return (
         <div>
             <div className=' text-white h-[700px] bg-bottom w-full relative' style={{ backgroundImage }}>
-                <div className="absolute inset-0 bg-gradient-to-b from-[#1515159e] to-transparent"></div>
+                <div className="absolute flex flex-col h-full w-full justify-center items-center inset-0 bg-gradient-to-b from-[#1515159e] to-transparent space-y-5">
+                    <h3 className=' text-3xl lg:text-6xl font-semibold text-center'>Find every information at one Place</h3>
+                    <p className=' lg:w-[600px] text-center w-72' >Welcome to your cozy retreat! Below, discover all the details about your delightful haven, carefully crafted for your comfort and enjoyment</p>
+                </div>
             </div>
 
-            <div className='flex flex-row-reverse  w-full pt-10'>
+            <div className='flex flex-col lg:flex-row-reverse w-full pt-10'>
 
                 <Swiper
                     spaceBetween={50}
                     slidesPerView={1}
-                    slidesPerGroup={2}
+                    slidesPerGroup={1}
                     speed={900}
                     navigation={true} modules={[Navigation]}
-                    className='mySwiper mx-auto w-full '
+                    className='mySwiper mx-auto w-full'
 
                 >
                     {
                         image.map((img, idx) =>
                             <SwiperSlide key={idx}>
                                 <div className=" w-full">
-                                    <figure className='h-[500px]'><img src={img} alt="" /></figure>
+                                    <img className=' w-full h-full' src={img} alt="" />
                                 </div>
                             </SwiperSlide>)
                     }
                 </Swiper>
 
 
-                <div className=' pt-10'>
+                <div className=' pt-10 pb-10'>
                     <div className=' text-white space-y-5 px-4'>
                         <h3 className='text-3xl font-semibold'>{roomData.room_type}</h3>
                         <div className=' text-yellow-400 flex gap-4'>
