@@ -57,7 +57,7 @@ const Login = () => {
                     <Fade cascade={true} direction='up' duration={1200}>
                         <h3 className=' text-6xl font-semibold text-center text-white'>My Account</h3>
                     </Fade>
-                    <Fade cascade={true} direction='up' duration={1400}>
+                    <Fade cascade={true} direction='up' duration={1600}>
                         <Link to={'/register'}><button className=' shadow-xl w-72 md:w-96 md:px-5 py-3 bg-yellow-600 text-white mx-auto'>Create an Account</button></Link>
                     </Fade>
                 </div>
