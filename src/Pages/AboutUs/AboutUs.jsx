@@ -3,7 +3,7 @@ import { Fade } from 'react-awesome-reveal';
 
 const AboutUs = () => {
     return (
-        <div className=' bg-[url("https://i.ibb.co/3dNrX30/10693.jpg")] h-[1500px] md:h-[1100px] w-full bg-bottom mx-auto'>
+        <div className=' bg-[url("https://i.ibb.co/3dNrX30/10693.jpg")] h-[1700px] md:h-[1100px] w-full bg-bottom mx-auto'>
             <section className=" text-white py-20  bg-gradient-to-b from-[#15151598] to-transparent w-full h-full relative">
 
                 <div className="container mx-auto px-4 mt-20">
