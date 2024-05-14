@@ -34,14 +34,14 @@ const RoomDetails = () => {
     });
 
     useEffect(() => {
-        axios.get(`http://localhost:5000/user/review/${id}`)
+        axios.get(`https://cozy-stay-server.vercel.app/user/review/${id}`)
             .then(res => {
                 setReviews(res.data)
             })
     }, [])
 
     useEffect(() => {
-        axios.get(`http://localhost:5000/rooms/${id}`)
+        axios.get(`https://cozy-stay-server.vercel.app/rooms/${id}`)
             .then(res => {
                 console.log(res.data)
                 setRoomData(res.data)
@@ -116,13 +116,13 @@ const RoomDetails = () => {
         }).then((result) => {
             if (result.isConfirmed) {
 
-                axios.put(`http://localhost:5000/rooms/${id}`, { availability })
+                axios.put(`https://cozy-stay-server.vercel.app/rooms/${id}`, { availability })
                     .then(res => {
                         setUpdate(res.data.modifiedCount)
                         console.log(res.data)
 
                         // creating a post for the MY Booking page where user can see the details
-                        axios.post('http://localhost:5000/booked/user', userBookingData)
+                        axios.post('https://cozy-stay-server.vercel.app/booked/user', userBookingData)
                             .then(res => console.log(res.data))
                             .catch(err => console.log(err))
 
@@ -235,7 +235,7 @@ const RoomDetails = () => {
                 </form>
             </div>
             <hr />
-            <Fade cascade={true}  duration={1500}>
+            <Fade cascade={true} duration={1500}>
                 <div>
                     <h3 className=' font-semibold text-white text-center text-5xl py-14 merriweather-light'>User Reviews</h3>
                 </div>

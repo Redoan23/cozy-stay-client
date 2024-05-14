@@ -15,7 +15,7 @@ const FeaturedRooms = () => {
 
 
     useEffect(() => {
-        axios.get('http://localhost:5000/rooms')
+        axios.get('https://cozy-stay-server.vercel.app/rooms')
             .then(res => {
                 setFeaturedRoom(res.data)
             })
@@ -71,7 +71,7 @@ const FeaturedRooms = () => {
                 {
                     featuredRoom.slice(4, 10).map((rooms, idx) =>
                         <SwiperSlide key={idx}>
-                            <div className="card w-96 rounded-none shadow-none bg-gray-200">
+                            <div className="card w-96 rounded-none shadow-white border bg-stone-800 text-white">
                                 <figure><img src={rooms.singleImg} alt="Shoes" /></figure>
                                 <div className="card-body space-y-3 text-left py-10 px-6">
                                     <Fade cascade={true} direction='up' duration={1100}>

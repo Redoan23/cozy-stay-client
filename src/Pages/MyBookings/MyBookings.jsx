@@ -32,7 +32,7 @@ const MyBookings = () => {
 
 
     useEffect(() => {
-        axios.get('http://localhost:5000/booked/user', { withCredentials: true, params: { email: user.email } })
+        axios.get('https://cozy-stay-server.vercel.app/booked/user', { withCredentials: true, params: { email: user.email } })
             .then(res => {
                 console.log(res.data)
                 setBookedData(res.data)
@@ -67,7 +67,7 @@ const MyBookings = () => {
 
             if (result.isConfirmed) {
 
-                axios.put(`http://localhost:5000/booked/user/${id}`, { date })
+                axios.put(`https://cozy-stay-server.vercel.app/booked/user/${id}`, { date })
                     .then(res => {
                         console.log(res.data)
                         setUpdate(res.data)
@@ -109,12 +109,12 @@ const MyBookings = () => {
 
             if (result.isConfirmed) {
 
-                axios.delete(`http://localhost:5000/booked/user/${id}`)
+                axios.delete(`https://cozy-stay-server.vercel.app/booked/user/${id}`)
                     .then(res => {
                         console.log(res.data)
                         setUpdate(res.data)
                     })
-                axios.put(`http://localhost:5000/rooms/${roomId}`, { availability: 'Not Available' })
+                axios.put(`https://cozy-stay-server.vercel.app/rooms/${roomId}`, { availability: 'Not Available' })
                     .then(res => console.log(res.data))
 
                 Swal.fire({

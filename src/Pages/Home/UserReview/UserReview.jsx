@@ -8,7 +8,7 @@ const UserReview = () => {
     const [reviews, setReviews] = useState([])
 
     useEffect(() => {
-        axios.get('http://localhost:5000/user/review')
+        axios.get('https://cozy-stay-server.vercel.app/user/review')
             .then(res => {
                 setReviews(res.data)
             })
@@ -16,7 +16,7 @@ const UserReview = () => {
 
     return (
         <div className=' mt-10'>
-            <Marquee direction='right' speed={50} pauseOnHover={false} >
+            <Marquee direction='left' speed={50} pauseOnHover={false} >
 
                 <div className=' flex gap-16 pl-10'>
                     {
