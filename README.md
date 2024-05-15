@@ -8,4 +8,4 @@ Features-
 
   category: assignment_category_0004
 
-- [live site url](https://cozy-stay-3af7a.firebaseapp.com/)
+- [live site url](https://6644678c1d25fe6b4ff16c2a--dainty-bunny-fe4501.netlify.app)
