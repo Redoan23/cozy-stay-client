@@ -1,8 +1,11 @@
-# React + Vite
+# Cozy Stay
+Features-
+- user can book any available rooms
+- user can update the booking date
+- user can cancel booking
+- user can write reviews for the booking rooms
+- user can sort rooms by price range
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+  category: assignment_category_0004
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- [live site url](https://6644678c1d25fe6b4ff16c2a--dainty-bunny-fe4501.netlify.app)
