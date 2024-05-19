@@ -71,7 +71,7 @@ const FeaturedRooms = () => {
                 {
                     featuredRoom.slice(4, 10).map((rooms, idx) =>
                         <SwiperSlide key={idx}>
-                            <div className="card w-96 rounded-none shadow-white border bg-stone-800 text-white">
+                            <div className="card w-96 rounded-none border-yellow-600 border bg-stone-800 text-white">
                                 <figure><img src={rooms.singleImg} alt="Shoes" /></figure>
                                 <div className="card-body space-y-3 text-left py-10 px-6">
                                     <Fade cascade={true} direction='up' duration={1100}>
@@ -82,7 +82,7 @@ const FeaturedRooms = () => {
                                     </Fade>
                                     <Fade cascade={true} duration={1500}>
                                         <div className="card-actions">
-                                            <Link to={`/roomdetails/${rooms._id}`} ><button className="btn text-center mx-auto w-44">Book Now</button></Link>
+                                            <Link to={`/roomdetails/${rooms._id}`} ><button className="btn rounded-none text-center text-white bg-yellow-600 border-none mx-auto w-44">Book Now</button></Link>
                                         </div>
                                     </Fade>
                                 </div>

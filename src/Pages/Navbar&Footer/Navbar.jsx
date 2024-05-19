@@ -58,8 +58,9 @@ const Navbar = () => {
                     {items}
                 </ul>
             </div>
-            <div className="navbar-end">
-                {user ? <Link className="btn" onClick={handleLogout}><button>Logout</button></Link> : <Link className="btn" to={'/login'}>Login</Link>}
+            <div className="navbar-end gap-4">
+                {user && <div className=' rounded-xl '><img className=' w-11 h-11 rounded-full' src={user.photoURL} alt="" /></div> }
+                {user ? <Link className="btn bg-yellow-600 text-white border-none" onClick={handleLogout}><button>Logout</button></Link> : <Link className="btn bg-yellow-600 text-white border-none" to={'/login'}>Login</Link>}
             </div>
         </div>
     );

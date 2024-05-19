@@ -21,7 +21,7 @@ const UserReview = () => {
                 <div className=' flex gap-16 pl-10'>
                     {
                         reviews.map(review =>
-                            <div key={review._id} className="bg-white rounded-lg shadow-lg p-4 min-h-[350px] w-96 flex flex-col space-y-5">
+                            <div key={review._id} className="bg-transparent text-white border-yellow-600 border rounded-lg shadow-xl p-4 min-h-[350px] w-96 flex flex-col space-y-5">
                                 <div className=' flex flex-col items-center justify-start'>
                                     <div className="text-4xl font-bold flex items-center justify-center gap-1"><IoStar></IoStar>{review.rating}</div>
                                     <div><h3 className=' font-semibold py-2'>{review?.userName}</h3></div>

@@ -6,7 +6,9 @@ import Swal from 'sweetalert2';
 import UserReview from './UserReview/UserReview';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import { Fade } from "react-awesome-reveal";
+import FoodPic from './FoodPic/FoodPic';
+import Cushion from './Cushion/Cushion';
+
 AOS.init();
 
 const Home = () => {
@@ -71,10 +73,18 @@ const Home = () => {
                     <p className=' inter-font text-xs lg:text-lg text-yellow-100 text-center font-semibold' data-aos='fade-left' data-aos-duration='1900'>welcome to cozy stay a luxurious hotel in Dhaka</p>
                 </div>
             </div>
-
+            <div>
+                explore
+            </div>
+            <div className='mt-28'>
+                <Cushion></Cushion>
+            </div>
+            <div className=' mt-24'>
+                <FoodPic></FoodPic>
+            </div>
             {/* featured rooms section */}
 
-            <div className=' mt-24'>
+            <div className=' mt-40'>
                 <div>
                     <h3 className=' merriweather-light text-center text-3xl font-semibold pb-10 text-white'>Featured Rooms</h3>
 
@@ -93,7 +103,7 @@ const Home = () => {
                     </div>
                 </div>
                 <div className=' mt-32'>
-                        <Newsletter></Newsletter>
+                    <Newsletter></Newsletter>
                 </div>
             </div>
 

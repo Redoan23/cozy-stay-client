@@ -67,7 +67,7 @@ const Review = () => {
                     <p data-aos='fade-up' data-aos-duration='1000'  className='w-80 text-center lg:w-[600px] md:w-[500px] inter-font text-white pb-32'>Welcome to our review section! Your feedback is invaluable to us as we continuously strive to enhance your experience. Take a moment to share your thoughts, insights, and suggestions with us.</p>
                 </div>
 
-                <div className=' bg-transparent absolute bottom-5 left-[34%]'>
+                <div className=' bg-transparent absolute bottom-5 left-[19%] md:left-[34%]'>
                     <form onSubmit={handleReview} className=' text-black lg:w-[500px] border'>
 
                         <div className=' grid  gap-4 p-5'>
