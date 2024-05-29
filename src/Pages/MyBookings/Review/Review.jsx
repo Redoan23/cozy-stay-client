@@ -64,12 +64,11 @@ const Review = () => {
 
                 <div className=' w-full h-full bg-gradient-to-b from-[#15151589] to-transparent flex flex-col gap-4 items-center justify-center'>
                     <h1 className=' text-white text-5xl font-semibold text-center merriweather-light'>Please Share Your Views</h1>
-                    <p data-aos='fade-up' data-aos-duration='1000'  className='w-80 text-center lg:w-[600px] md:w-[500px] inter-font text-white pb-32'>Welcome to our review section! Your feedback is invaluable to us as we continuously strive to enhance your experience. Take a moment to share your thoughts, insights, and suggestions with us.</p>
+                    <p data-aos='fade-up' data-aos-duration='1000' className='w-80 text-center lg:w-[600px] md:w-[500px] inter-font text-white pb-32'>Welcome to our review section! Your feedback is invaluable to us as we continuously strive to enhance your experience. Take a moment to share your thoughts, insights, and suggestions with us.</p>
                 </div>
 
-                <div className=' bg-transparent absolute bottom-5 left-[19%] md:left-[34%]'>
+                <div className=' bg-transparent absolute bottom-32 lg:bottom-5  left-[19%] md:left-[34%]'>
                     <form onSubmit={handleReview} className=' text-black lg:w-[500px] border'>
-
                         <div className=' grid  gap-4 p-5'>
                             <input placeholder=' username' data-aos='fade-right' data-aos-duration='1000' className=' border' type="text" name='name' id='name' defaultValue={user.displayName} disabled />
                             <input data-aos='fade-left' data-aos-duration='1000' placeholder=' rating' name='rating' className=' border p-1' step='0.1' type="number" min={1} max={5} />
