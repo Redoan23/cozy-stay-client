@@ -34,14 +34,14 @@ const RoomDetails = () => {
     });
 
     useEffect(() => {
-        axios.get(`https://cozy-stay-server.vercel.app/user/review/${id}`)
+        axios.get(`http://localhost:5000/user/review/${id}`)
             .then(res => {
                 setReviews(res.data)
             })
     }, [])
 
     useEffect(() => {
-        axios.get(`https://cozy-stay-server.vercel.app/rooms/${id}`)
+        axios.get(`http://localhost:5000/rooms/${id}`)
             .then(res => {
                 console.log(res.data)
                 setRoomData(res.data)
@@ -116,16 +116,16 @@ const RoomDetails = () => {
         }).then((result) => {
             if (result.isConfirmed) {
 
-                axios.put(`https://cozy-stay-server.vercel.app/rooms/${id}`, { availability })
+                axios.put(`http://localhost:5000/rooms/${id}`, { availability, startDate })
                     .then(res => {
                         setUpdate(res.data.modifiedCount)
                         console.log(res.data)
 
                         // creating a post for the MY Booking page where user can see the details
-                        axios.post('https://cozy-stay-server.vercel.app/booked/user', userBookingData)
+                        axios.post('http://localhost:5000/booked/user', userBookingData)
                             .then(res => console.log(res.data))
                             .catch(err => console.log(err))
-
+                            
                         if (res.data.modifiedCount > 0) {
                             Swal.fire({
                                 title: "Booked!",

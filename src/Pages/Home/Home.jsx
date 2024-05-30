@@ -8,6 +8,10 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import FoodPic from './FoodPic/FoodPic';
 import Cushion from './Cushion/Cushion';
+import RoomAvailability from './RoomAvailability';
+
+// material ui
+// import { Box, Modal, Typography } from '@mui/material';
 
 AOS.init();
 
@@ -21,48 +25,70 @@ const Home = () => {
 
     const classAdd = add == false ? 'none' : 'block'
 
-    useEffect(() => {
-        const timeOut = setTimeout(() => {
+    // useEffect(() => {
+    //     const timeOut = setTimeout(() => {
 
 
-            Swal.fire({
-                imageWidth: 550,
-                imageHeight: 400,
-                width: 500,
-                padding: 0,
-                html:
-                    `
-              <div class="relative h-[550px] overflow-auto p-0">
-                        <img src="https://i.ibb.co/znpsbQt/2150683419.jpg" alt="Special Offer" class="absolute inset-0 w-full h-full object-cover blur-md" style="filter: blur(1px);">
-                    <div class="absolute inset-0 flex justify-center items-center text-center text-white text-shadow-lg bg-gradient-to-b from-[#1515159b] to-[#99999900]">
-                        <div>
-                           <h2 class="text-3xl font-bold mb-4 ">Our special offer is going on</h2>
-                           <p class="text-xl text-red-100 bg-red-500 p-2">Book 2 rooms, pay for one</p>
-                       </div>
-                    </div>
-             </div> `,
-                imageAlt: "Custom image",
-                showCancelButton: false,
-                showConfirmButton: true,
-                confirmButtonColor: "#bbbb",
-                confirmButtonText: "X",
-                confirmButtonAriaLabel: "Close",
-                customClass: {
-                    confirmButton: 'absolute top-0 rounded-none right-0 p-0 m-0 bg-none border-none text-3xl text-black',
-                    popup: ' padding-0 margin-0',
+    //         Swal.fire({
+    //             imageWidth: 550,
+    //             imageHeight: 400,
+    //             width: 500,
+    //             padding: 0,
+    //             html:
+    //                 `
+    //           <div class="relative h-[550px] overflow-auto p-0">
+    //                     <img src="https://i.ibb.co/znpsbQt/2150683419.jpg" alt="Special Offer" class="absolute inset-0 w-full h-full object-cover blur-md" style="filter: blur(1px);">
+    //                 <div class="absolute inset-0 flex justify-center items-center text-center text-white text-shadow-lg bg-gradient-to-b from-[#1515159b] to-[#99999900]">
+    //                     <div>
+    //                        <h2 class="text-3xl font-bold mb-4 ">Our special offer is going on</h2>
+    //                        <p class="text-xl text-red-100 bg-red-500 p-2">Book 2 rooms, pay for one</p>
+    //                    </div>
+    //                 </div>
+    //          </div> `,
+    //             imageAlt: "Custom image",
+    //             showCancelButton: false,
+    //             showConfirmButton: true,
+    //             confirmButtonColor: "#bbbb",
+    //             confirmButtonText: "X",
+    //             confirmButtonAriaLabel: "Close",
+    //             customClass: {
+    //                 confirmButton: 'absolute top-0 rounded-none right-0 p-0 m-0 bg-none border-none text-3xl text-black',
+    //                 popup: ' padding-0 margin-0',
 
-                },
-            });
-
-
-            // toggleAdd()
-
-        }, 1000);
-
-        return () => clearTimeout(timeOut)
-    }, [])
+    //             },
+    //         });
 
 
+    //         // <Modal
+    //         //     open={open}
+    //         //     onClose={handleClose}
+    //         //     aria-labelledby="modal-modal-title"
+    //         //     aria-describedby="modal-modal-description"
+    //         // >
+    //         //     <Box sx={style}>
+    //         //         <Typography id="modal-modal-title" variant="h6" component="h2">
+    //         //             Text in a modal
+    //         //         </Typography>
+    //         //         <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+    //         //             Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+    //         //         </Typography>
+    //         //     </Box>
+    //         // </Modal>
+
+
+    //     }, 1000);
+
+    //     return () => clearTimeout(timeOut)
+    // }, [])
+
+
+    // const handleAvailability = e => {
+    //     e.preventDefault()
+    //     const form = e.target
+    //     const roomName = form.rooms.value
+    //     const date = form.date.value
+       
+    // }
 
 
     return (
@@ -71,11 +97,11 @@ const Home = () => {
                 <div className=' text-white z-10 absolute bg-gradient-to-b from-[#1515159b] to-[#99999900] w-full h-full flex items-center flex-col justify-center gap-5'>
                     <h1 className='merriweather-light text-5xl lg:text-8xl font-bold text-center' data-aos='fade-right' data-aos-duration='1200' >COZY STAY</h1>
                     <p className=' inter-font text-xs lg:text-lg text-yellow-100 text-center font-semibold' data-aos='fade-left' data-aos-duration='1900'>welcome to cozy stay a luxurious hotel in Dhaka</p>
+
+                    <RoomAvailability/>
                 </div>
             </div>
-            <div>
-                explore
-            </div>
+
             <div className='mt-28'>
                 <Cushion></Cushion>
             </div>

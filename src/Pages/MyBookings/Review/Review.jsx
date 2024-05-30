@@ -48,7 +48,7 @@ const Review = () => {
             });
         }
 
-        axios.post('https://cozy-stay-server.vercel.app/user/review', { reviewData }, { withCredentials: true, params: { email: user.email } })
+        axios.post('http://localhost:5000/user/review', { reviewData }, { withCredentials: true, params: { email: user.email } })
             .then(res => {
                 console.log(res.data)
                 Toast.fire({

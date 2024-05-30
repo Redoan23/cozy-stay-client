@@ -8,7 +8,7 @@ const UserReview = () => {
     const [reviews, setReviews] = useState([])
 
     useEffect(() => {
-        axios.get('https://cozy-stay-server.vercel.app/user/review')
+        axios.get('http://localhost:5000/user/review')
             .then(res => {
                 setReviews(res.data)
             })

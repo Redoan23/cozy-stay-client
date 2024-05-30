@@ -25,7 +25,7 @@ const Rooms = () => {
 
 
     useEffect(() => {
-        axios.get('https://cozy-stay-server.vercel.app/user/review')
+        axios.get('http://localhost:5000/user/review')
             .then(res => {
                 setReviewData(res.data)
             })
@@ -57,7 +57,7 @@ const Rooms = () => {
             });
         }
 
-        axios.get(`https://cozy-stay-server.vercel.app/rooms/filter?from=${from}&to=${to}`)
+        axios.get(`http://localhost:5000/rooms/filter?from=${from}&to=${to}`)
             .then(res => {
                 console.log(res.data)
                 setData(res.data)
