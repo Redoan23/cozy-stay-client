@@ -15,7 +15,7 @@ const FeaturedRooms = () => {
 
 
     useEffect(() => {
-        axios.get('http://localhost:5000/rooms')
+        axios.get('https://cozy-stay-server.vercel.app/rooms')
             .then(res => {
                 setFeaturedRoom(res.data)
             })

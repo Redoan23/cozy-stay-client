@@ -32,7 +32,7 @@ const MyBookings = () => {
 
 
     useEffect(() => {
-        axios.get('http://localhost:5000/booked/user', { withCredentials: true, params: { email: user.email } })
+        axios.get('https://cozy-stay-server.vercel.app/booked/user', { withCredentials: true, params: { email: user.email } })
             .then(res => {
                 console.log(res.data)
                 setBookedData(res.data)
@@ -42,11 +42,10 @@ const MyBookings = () => {
 
 
 
-    const handleUpdateDate = (e, id) => {
+    const handleUpdateDate = (e, id, roomId) => {
         e.preventDefault()
+
         const date = e.target.date.value
-        // console.log(id)
-        // console.log(date)
 
         if (!date) {
             return Toast.fire({
@@ -67,10 +66,10 @@ const MyBookings = () => {
 
             if (result.isConfirmed) {
 
-                axios.put(`http://localhost:5000/booked/user/${id}`, { date })
+                axios.put(`https://cozy-stay-server.vercel.app/booked/user/${id}`, { date })
                     .then(res => {
-                        console.log(res.data)
                         setUpdate(res.data)
+                        axios.put(`https://cozy-stay-server.vercel.app/rooms/${roomId}`, { startDate: date }) //TODO: change the roomID
                         if (res.data.modifiedCount > 0) {
                             Swal.fire({
                                 title: "Updated!",
@@ -89,7 +88,7 @@ const MyBookings = () => {
         const currentDate = moment(startDate, "YYYY-MM-DD")
         const today = moment()
         const oneDayBeforeStartDate = currentDate.subtract({ "days": 1 })
-        if (today.isSame(oneDayBeforeStartDate,'date')) {
+        if (today.isSame(oneDayBeforeStartDate, 'date')) {
 
             return Toast.fire({
                 icon: "error",
@@ -109,12 +108,12 @@ const MyBookings = () => {
 
             if (result.isConfirmed) {
 
-                axios.delete(`http://localhost:5000/booked/user/${id}`)
+                axios.delete(`https://cozy-stay-server.vercel.app/booked/user/${id}`)
                     .then(res => {
                         console.log(res.data)
                         setUpdate(res.data)
                     })
-                axios.put(`http://localhost:5000/rooms/${roomId}`, { availability: 'Not Available' })
+                axios.put(`https://cozy-stay-server.vercel.app/rooms/${roomId}`, { availability: 'Not Available' })
                     .then(res => console.log(res.data))
 
                 Swal.fire({
@@ -166,7 +165,7 @@ const MyBookings = () => {
                                             <Link to={{ pathname: `/reviews/${room.roomId}`, state: { mainIdOfTheRoom: room.mainIdOfTheRoom } }}><button className="btn btn-ghost btn-xs bg-orange-500 text-white">Post A Review</button></Link>
                                         </td>
                                         <td>
-                                            <form className=' flex items-center gap-2' onSubmit={(e) => handleUpdateDate(e, room._id)}>
+                                            <form className=' flex items-center gap-2' onSubmit={(e) => handleUpdateDate(e, room._id, room.roomId)}>
                                                 <input className=' border bg-gray-100 text-black' type="date" name="date" id="date" />
                                                 <input type="submit" className=' btn btn-ghost btn-xs bg-green-600 text-white' value="Update Date" />
                                             </form>

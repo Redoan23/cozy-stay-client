@@ -25,7 +25,7 @@ const router = createBrowserRouter([
             {
                 path: '/rooms',
                 element: <Rooms></Rooms>,
-                loader: () => fetch('http://localhost:5000/rooms')
+                loader: () => fetch('https://cozy-stay-server.vercel.app/rooms')
             },
             {
                 path: '/myBookings',

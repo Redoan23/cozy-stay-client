@@ -9,6 +9,7 @@ import { AuthContext } from '../AuthProvider/AuthProvider';
 import Swal from 'sweetalert2'
 import { IoStar } from 'react-icons/io5';
 import { Fade } from 'react-awesome-reveal';
+import { BsArrowDown } from 'react-icons/bs';
 
 
 const RoomDetails = () => {
@@ -34,14 +35,14 @@ const RoomDetails = () => {
     });
 
     useEffect(() => {
-        axios.get(`http://localhost:5000/user/review/${id}`)
+        axios.get(`https://cozy-stay-server.vercel.app/user/review/${id}`)
             .then(res => {
                 setReviews(res.data)
             })
     }, [])
 
     useEffect(() => {
-        axios.get(`http://localhost:5000/rooms/${id}`)
+        axios.get(`https://cozy-stay-server.vercel.app/rooms/${id}`)
             .then(res => {
                 console.log(res.data)
                 setRoomData(res.data)
@@ -116,13 +117,13 @@ const RoomDetails = () => {
         }).then((result) => {
             if (result.isConfirmed) {
 
-                axios.put(`http://localhost:5000/rooms/${id}`, { availability, startDate })
+                axios.put(`https://cozy-stay-server.vercel.app/rooms/${id}`, { availability, startDate })
                     .then(res => {
                         setUpdate(res.data.modifiedCount)
                         console.log(res.data)
 
                         // creating a post for the MY Booking page where user can see the details
-                        axios.post('http://localhost:5000/booked/user', userBookingData)
+                        axios.post('https://cozy-stay-server.vercel.app/booked/user', userBookingData)
                             .then(res => console.log(res.data))
                             .catch(err => console.log(err))
                             
@@ -144,11 +145,12 @@ const RoomDetails = () => {
     }
     return (
         <div>
-            <div className=' text-white h-[700px] bg-bottom w-full relative' style={{ backgroundImage }}>
+            <div className=' text-white h-[650px] bg-bottom w-full relative' style={{ backgroundImage }}>
                 <div className="absolute flex flex-col h-full w-full justify-center items-center inset-0 bg-gradient-to-b from-[#1515159e] to-transparent space-y-5">
                     <Fade cascade={true} direction='up' duration={1200}>
                         <h3 className=' text-3xl lg:text-5xl font-semibold text-center merriweather-light'>Find every information at one Place</h3>
                         <p className=' lg:w-[600px] text-center w-72 inter-font' >Welcome to your cozy retreat! Below, discover all the details about your delightful haven, carefully crafted for your comfort and enjoyment</p>
+                        <p className=' text-2xl animate-bounce'><BsArrowDown/></p>
                     </Fade>
                 </div>
             </div>
