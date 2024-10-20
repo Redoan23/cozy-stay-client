@@ -17,13 +17,12 @@ AOS.init();
 
 const Home = () => {
 
-    const [add, setAdd] = useState(false)
-    console.log(add)
-    const toggleAdd = () => {
-        setAdd(!add)
-    }
+    // const [add, setAdd] = useState(false)
+    // const toggleAdd = () => {
+    //     setAdd(!add)
+    // }
 
-    const classAdd = add == false ? 'none' : 'block'
+    // const classAdd = add == false ? 'none' : 'block'
 
     // useEffect(() => {
     //     const timeOut = setTimeout(() => {
